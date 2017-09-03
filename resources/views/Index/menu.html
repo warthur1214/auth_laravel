@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<head>
+    <include file="Index:meta" />
+    <include file="Index:css" />
+    <style type="text/css">
+    body {
+        background-color: #1e282c;
+
+    }
+    </style>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini" style="padding: 0;">
+    <div class="wrapper">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+                <volist name="menu" id="vals">
+                    <if condition="count($vals['menu_two']) neq 0">
+                        <li class="treeview">
+                            <a href="<{$vals['module_url']}>">
+                                <span><{$vals['module_name']}></span> <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <volist name="vals['menu_two']" id="val">
+                                    <li>
+                                        <a href="<{$val['module_url']}>" target="myFrame">
+                                            <i class="fa fa-circle-o"></i>
+                                            <{$val['module_name']}>
+                                        </a>
+                                    </li>
+                                </volist>
+                            </ul>
+                        </li>
+                    </if>
+                </volist>
+            </ul>
+        </section>
+    </div>
+    <!-- ./wrapper -->
+    <include file="Index:js" />
+    <script type="text/javascript">
+    $(function() {
+
+        var $firstMenu = $('.sidebar-menu').children('li');
+        var menuIco = ["fa-automobile","fa-location-arrow","fa-credit-card","fa-search","fa-wrench","fa-users","fa-database","fa-edit","fa-gears"];
+
+        $firstMenu.each(function(i) {
+            var $this = $(this);
+            $this.children('a').prepend('<i class="fa '+ menuIco[ i ] +'"></i> ');  
+        });
+        $('.treeview-menu').find('a').click(function() {
+            var li = $(this).parent();
+            li.addClass('active');
+            li.siblings().removeClass('active');
+        })
+    })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <include file="Index:meta" />
+    <include file="Index:css" />
+    <style>
+
+    </style>
+</head>
+
+<body>
+<section class="content-header">
+        <span class="pull-right">
+        <a href="addCompany" class="btn btn-sm btn-info"> <i class="fa fa-plus"></i> 添加公司</a>
+      </span>
+    <h1>
+        公司列表
+    </h1>
+</section>
+<div class="box marginB0">
+    <form class="form-horizontal padding10" role="form" id="submit_form">
+        <div class="form-group">
+            <label for="car_no" class="col-sm-1 control-label">公司名称</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="car_no" name="name" placeholder="请输入公司简称或者全称">
+            </div>
+            <label for="car_no" class="col-sm-1 control-label">公司归属</label>
+            <div class="col-sm-3">
+                <div class="form-group relative">
+                    <input type="hidden" name="p_id">
+                    <input type="text" class="form-control" id="organ_id" placeholder="选择所属企业或机构" readonly="readonly" required style="background-color: transparent;">
+                    <div id="roleTree" class="role-tree-popup hide"></div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <a href="javascript:;" id="searchBtn" class="pull-right btn btn-sm btn-info"><i class="fa fa-search"></i> 搜索</a>
+            </div>
+
+        </div>
+    </form>
+    <div class="box-body">
+        <table id="list" class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>公司编号</th>
+                <th>公司简称</th>
+                <th>公司全称</th>
+                <th>公司类型</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="infoList">
+
+            </tbody>
+        </table>
+        <div class="box-footer clearfix page">
+
+        </div>
+    </div>
+</div>
+<!-- /.box -->
+<include file="Index:js" />
+<!-- DataTables -->
+<include file="Index:datatable" />
+
+<script src="/Public/js/role/roleTree.js"></script>
+<script src="/Public/js/company/common.js"></script>
+<script src="/Public/js/company/companyList.js"></script>
+</body>
+
+</html>

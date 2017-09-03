@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <include file="Index:meta" />
+    <include file="Index:css" />
+    <style>
+
+        #cooperateWrap{
+            position: relative;
+        }
+        #sonWrapper{
+            position: absolute;
+            top:34px;
+            height:400px;
+            width:100%;
+            background: #fff;
+            overflow-y: auto;
+            padding:0;
+            margin:0;
+            display: none;
+        }
+        #sonWrapper li:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+<section class="content-header">
+    <span class="pull-right">
+        <a href="addSon" class="btn btn-sm btn-info"> <i class="fa fa-plus"></i> 添加机构</a>
+    </span>
+    <h1>
+        机构列表
+    </h1>
+</section>
+<div class="box marginB0">
+    <form class="form-horizontal padding10" role="form" id="submit_form">
+        <div class="form-group">
+            <label for="car_no" class="col-sm-1 control-label">机构名称</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="car_no" name="name" placeholder="请输入企业简称或者全称">
+            </div>
+            <label for="organ_lev" class="col-sm-1 control-label">机构级别</label>
+            <div class="col-sm-3">
+                <select class="form-control" id="organ_lev" name="organ_lv">
+                    <option value="">全部</option>
+
+                </select>
+            </div>
+            <label for="organ_id" class="col-sm-1 control-label">机构归属</label>
+            <div class="col-sm-3 relative">
+
+                <input type="hidden" name="p_id">
+                <input type="text" class="form-control" id="organ_id" placeholder="选择所属企业或机构" readonly="readonly" required style="background-color: transparent;">
+                <div id="roleTree" class="role-tree-popup hide"></div>
+
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="javascript:;" id="searchBtn" class="btn btn-sm btn-info selectInfo"><i class="fa fa-search"></i> 搜索</a>
+        </div>
+    </form>
+    <div class="box-body">
+        <table id="list" class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>机构编号</th>
+                <th>机构简称</th>
+                <th>机构名称</th>
+                <th>机构地址</th>
+                <th>机构级别</th>
+                <th>机构归属</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="infoList">
+
+            </tbody>
+        </table>
+
+        <div class="box-footer clearfix page"></div>
+    </div>
+</div>
+<!-- /.box -->
+<include file="Index:js" />
+<!-- DataTables -->
+<include file="Index:datatable" />
+<!--多级下拉框组件-->
+
+<!--自定义函数-->
+<script src="/Public/js/role/roleTree.js"></script>
+<script src="/Public/js/son/sonList.js"></script>
+</body>
+
+</html>

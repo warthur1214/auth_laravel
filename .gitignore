@@ -1,0 +1,5 @@
+/vendor
+.env
+.gitattributes
+.idea
+/storage/logs/*.log

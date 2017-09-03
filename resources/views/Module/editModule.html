@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <include file="Index:meta" />
+    <include file="Index:css" />
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/Public/plugins/datatables/dataTables.bootstrap.css">
+    <style type="text/css">
+    .alert_page_success {
+        color: #468847;
+        background-color: #dff0d8;
+        border-color: #d6e9c6
+    }
+    
+    .alert_page_error {
+        color: #b94a48;
+        background-color: #f2dede;
+        border-color: #eed3d7
+    }
+    </style>
+</head>
+
+<body>
+    <section class="content-header">
+        <h1>
+        修改模块
+      </h1>
+    </section>
+    <div class="box box-cus box-cus-form">
+        <div class="alert alert-error" style="display:none;">
+            <span>信息不能为空，请输入</span>
+        </div>
+        <div class="box-body">
+            <form role="form" id="info_form">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="title" colspan="2"><i class="fa fa fa-info-circle"></i> 修改模块信息</td>
+                        </tr>
+                        <tr>
+                        <th><span class="text-red">*</span> 模块名称</th>
+                            <td>
+                                <input type="text" class="form-control" id="module_name" name="module_name" value="<{$info['module_name']}>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>模块地址</th>
+                            <td>
+                                <input type="text" class="form-control" id="module_url" name="module_url" value="<{$info['module_url']}>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><span class="text-red">*</span> 模块关键词</th>
+                            <td>
+                                <input type="text" class="form-control" id="matched_key" name="matched_key" value="<{$info['matched_key']}>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>所属平台</th>
+                            <td>
+                                <select class="form-control" id="platform_id" name="platform_id">
+                                    <option value="">请选择</option>
+                                    <volist name="system" id="val">
+                                        <option value="<{$val['platform_id']}>"
+                                        <if condition="$val['platform_id'] eq $info['platform_id']">selected</if>>
+                                            <{$val['platform_name']}>
+                                        </option>
+                                    </volist>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>父级模块</th>
+                            <td>
+                                <select class="form-control" id="module_parent_id" name="module_parent_id">
+                                    <option value="">请选择</option>
+                                    <volist name="parent" id="val">
+                                        <option value="<{$val['module_id']}>" 
+                                        <if condition="$val['module_id'] eq $info['parent_module_id']">selected</if>>
+                                            <{$val['module_name']}>
+                                        </option>
+                                    </volist>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="hidden" id="module_id" name="module_id" value="<{$info['module_id']}>">
+            </form>
+        </div> 
+        <div class="box-footer clearfix text-center">  
+            <button type="submit" class="btn btn-primary" id="submit"><i class="fa fa-save"></i> 提交</button>
+            <a href="/Home/Module/moduleList" class="btn btn-default"><i class="fa fa-arrow-left"></i> 返回</a>
+        </div>
+        </div>
+        <!-- /.box -->
+        <include file="Index:js" />
+        <!-- DataTables -->
+        <script src="/Public/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="/Public/plugins/datatables/dataTables.bootstrap.min.js"></script>
+        <script src="/Public/plugins/jQuery/jquery.validate.min.js"></script>
+        <script src="/Public/plugins/jQuery/additional-methods.min.js"></script>
+        <script src="/Public/js/module/editModule.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        getModuleByVal("<{$info['platform_id']}>");
+        $('#platform_id').change(function()
+        {
+            getModuleByVal($(this).val());
+        })
+    })
+    function getModuleByVal(val)
+    {
+        $.ajax({
+                'url':'/Home/Module/getModuleById/id/'+val,
+                'dataType':'json',
+                'type':'post',
+                success:function(result)
+                {
+                    var html = "<option value=''>请选择</option>";
+                    if(result.length > 0)
+                    {
+                        for (var i = 0; i < result.length; i++) 
+                        {
+                            var is_select = ("<{$info['parent_module_id']}>" == result[i]['module_id']) ? "selected" : "";
+                            html += "<option value='"+result[i]['module_id']+"'"+is_select+">"+result[i]['module_name']+"</option>";
+                        };
+                    }
+                    $('#module_parent_id').html(html);
+                }
+            })
+    }
+    </script>
+</body>
+
+</html>

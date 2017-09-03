@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <include file="Index:meta" />
+    <include file="Index:css" />
+</head>
+
+<body>
+    <section class="content-header">
+        <span class="pull-right">
+        <a href="/Home/Role/addRole" class="btn btn-sm btn-info"> <i class="fa fa-plus"></i> 添加角色</a>
+      </span>
+        <h1>
+        角色管理 
+      </h1>
+    </section>
+    <div class="box marginB0">
+        <div class="box-body row">
+            <div class="col-sm-3">
+                <h4>角色查询</h4>
+                <div id="roleTree"></div>
+            </div>
+            <div class="col-sm-9">
+                <table id="myTable" class="table table-bordered table-hover">
+                </table>
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+    <include file="Index:js" />
+    <include file="Index:datatable" />
+    <script type="text/javascript" src="/Public/js/role/roleTree.js"></script>
+    <script type="text/javascript" src="/Public/js/role/roleList.js"></script>
+</body>
+
+</html>
