@@ -12,5 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    if (session("auth_account_id")) {
+        return response()->view('index.index');
+    } else {
+        return response()->view('index.login');
+    }
+
 });
+
+Route::get('/login', 'LoginController@login');
+Route::post('/loginAjax', 'LoginController@loginAjax');

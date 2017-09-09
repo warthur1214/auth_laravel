@@ -1,0 +1,986 @@
+/*!
+ *   style.css 
+ *   Author: Guilin Yu 
+!*/
+
+/*主页样式重写*/
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.paddingTB10 {
+    padding: 10px 0;
+    overflow: hidden;
+}
+
+.padding10 {
+    padding: 10px;
+}
+
+.marginL5 {
+    margin-left: 5px;
+}
+
+.marginB0 {
+    margin-bottom: 0;
+}
+
+.paddingT10 {
+    margin-top: 10px;
+}
+
+nav,
+aside,
+.content-wrapper,
+footer,
+select,
+input,
+button,
+textarea,
+div,
+p {
+    font-family: "微软雅黑", Helvetica, Arial, sans-serif
+}
+
+.main-header .logo {
+    text-align: left;
+}
+
+.sidebar {
+    padding-top: 3px;
+    overflow: auto;
+}
+
+.sidebar-menu .treeview-menu > li > a {
+    padding: 7px 5px 7px 15px;
+}
+
+.sidebar-menu > li > a {
+    padding: 13px 5px 13px 15px;
+}
+
+.auto-table {
+    overflow: auto;
+}
+
+.relative {
+    position: relative;
+}
+
+/*列表页样式重写*/
+
+.content-header {
+    padding: 10px;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th {
+    white-space: nowrap;
+}
+
+.box-cus {
+    padding-top: 10px;
+}
+
+.box-cus .alert {
+    margin: 0 10px;
+    padding: 12px 10px;
+}
+
+.box-cus .form-control {
+    padding: 3px 12px;
+    height: auto;
+}
+
+.box-cus .input-group-addon {
+    padding: 4px 10px;
+}
+
+.calendar-box {
+    position: relative;
+}
+
+td .calendar-box .fa-calendar {
+    position: absolute;
+    top: 6px;
+    left: 8px;
+}
+
+.calendar-box .form-control {
+    padding-left: 30px;
+}
+
+.box-cus textarea.form-control {
+    height: 80px;
+}
+
+.box-cus .form-control.date {
+    padding-left: 30px;
+}
+
+.box-cus .table-bordered .title {
+    padding: 16px 8px 12px 8px;
+    border: 1px solid #f4f4f4;
+    font-weight: bold;
+    color: #333;
+}
+
+.box-cus td {
+    position: relative;
+}
+
+.box-cus td .form-group {
+    margin-bottom: 0;
+}
+
+.box-cus td .text-red {
+    position: absolute;
+    right: 5px;
+    z-index: 2;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.box-cus .table-bordered > tbody > tr th {
+    background-color: #f9f9f9;
+    width: 150px;
+    vertical-align: middle;
+}
+
+.box-cus-form .table-bordered > tbody > tr > td {
+    padding: 8px;
+}
+
+.box-cus-form .table-bordered > tbody > tr > td.select-btn-box {
+    position: relative;
+    padding-right: 60px;
+}
+
+.select-btn-box .btn {
+    position: absolute;
+    right: 8px;
+    top: 6px;
+}
+
+.time-split-text {
+    line-height: 34px;
+    font-weight: bold;
+}
+
+.box-header.with-borderT {
+    border-top: 1px solid #f4f4f4;
+    padding-left: 19px;
+}
+
+.box .with-borderT {
+    border-top: 1px solid #f4f4f4;
+}
+
+/*历史轨迹页面地图控制器*/
+
+.contorl-box {
+    position: absolute;
+    margin-left: -50px;
+    bottom: 20px;
+    left: 50%;
+    z-index: 1;
+}
+
+.play-drop-box {
+    position: relative;
+}
+
+.play-drop-box .dropdown-menu {
+    top: auto;
+    bottom: 30px;
+    min-width: 0;
+    text-align: center;
+    border: 1px solid #dbdbdb;
+}
+
+/*车辆信息弹出窗口样式*/
+
+.car-info-window .badge {
+    padding: 6px 10px;
+    margin-bottom: 5px;
+}
+
+.car-info-window .list-unstyled {
+    padding-left: 10px;
+    font-size: .9em;
+}
+
+.car-info-window li {
+    padding: 1px 0;
+}
+
+/* 车辆位置页面 */
+
+.car-status-box {
+    position: absolute;
+    width: auto;
+    min-width: 100px;
+    z-index: 1;
+    left: 10px;
+    top: 10px;
+    -moz-box-shadow: 2px 2px 8px #888888;
+    box-shadow: 2px 2px 8px #888888;
+}
+
+.car-status-box .box {
+    margin-bottom: 0;
+}
+
+.car-status-box .box-header {
+    padding: 5px;
+}
+
+.car-status-box .box-title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.car-status-box .box-body {
+    padding: 0;
+}
+
+.car-status-box .nav > li > a {
+    padding: 5px 10px;
+}
+
+.car-list-box {
+    position: absolute;
+    right: 0;
+    width: 260px;
+    height: 100%;
+    z-index: 1;
+    background-color: #fff;
+    -moz-box-shadow: -2px 0 8px #888888;
+    box-shadow: -2px 0 8px #888888;
+}
+
+.car-list-box .box {
+    margin: 0;
+    height: 100%;
+    overflow: auto;
+}
+
+.car-list-box .form-control {
+    width: 80%;
+    margin-right: 1%;
+}
+
+.car-list-box select.form-control {
+    width: 42%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.car-list-box .btn {
+    padding: 7px 10px;
+}
+
+.car-list-box .list-unstyled {
+    padding: 10px 0;
+}
+
+.car-list-box .list-unstyled li {
+    padding: 2px 0;
+    cursor: default;
+}
+
+.car-list-box .list-unstyled ul {
+    list-style: none;
+    padding: 0 0 0 20px;
+}
+
+.car-list-box input[type=checkbox] {
+    position: relative;
+    top: 2px;
+    margin-right: 3px;
+}
+
+.car-list-box li.active {
+    background-color: #f7f1f1;
+}
+
+.car-collapse .fa-caret-down:before {
+    content: "\f0da";
+}
+
+.collapse-box {
+    position: absolute;
+    bottom: 0;
+    left: -25px;
+    width: 25px;
+    text-align: center;
+    box-shadow: -2px 0 8px #888888;
+}
+
+.badge-carno {
+    position: relative;
+    top: -10px;
+    left: 20px;
+}
+
+.bg-orange:hover {
+    background-color: #ff7701 !important;
+}
+
+.text-default {
+    color: #777;
+}
+
+/*企业硬件添加页面-新增设备号*/
+
+.device_info {
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 5px;
+}
+
+.device_info .icon-box {
+    position: absolute;
+    left: 0;
+    width: 35px;
+    height: 100%;
+}
+
+.device_info .icon-box .btn {
+    height: 100%;
+    width: 100%;
+}
+
+.device_info .icon-box .remove {
+    background: #dd4b39;
+    border-color: #dd4b39;
+}
+
+/*分页样式*/
+
+.page {
+    text-align: center;
+}
+
+.page a {
+    border-radius: 5px;
+    width: 50px;
+    display: inline-block;
+    height: 30px;
+    margin-right: 5px;
+    line-height: 30px;
+    transition: none;
+    color: #181616;
+    font-size: 14px;
+    background: #fff;
+}
+
+.page .current {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    font-weight: bold;
+    color: #3c8dbc;
+}
+
+.page a:hover {
+    color: #fff;
+    background: #e82a40;
+    text-decoration: none;
+}
+
+.page a.prev,
+.page a.next {
+    width: 80px;
+    height: 30px;
+    font-size: 14px;
+}
+
+.page strong {
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    border-radius: 5px;
+    background: #e82a40;
+    color: #fff;
+    font-weight: bold;
+}
+
+/*周月年日期选择器*/
+
+.daterange-box {
+    width: 246px;
+    margin: 5px auto 0;
+}
+
+.daterange-box > span {
+    display: inline-block;
+    float: left;
+    margin: 0 1px;
+    height: 36px;
+    line-height: 36px;
+}
+
+.daterange-box .text-date {
+    font-size: 14px;
+    width: 180px;
+}
+
+.daterange-box .icon-operate {
+    width: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    moz-user-select: -moz-none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/*数据统计模块*/
+
+.total-chart-box {
+    border: 1px solid #f4f4f4;
+    padding: 10px 0 20px 0;
+}
+
+.total-chart-box .box-title {
+    font-family: '微软雅黑';
+    padding: 0 0 20px 15px;
+}
+
+.total-chart-box .item-box {
+    float: left;
+    width: 14%;
+    text-align: center;
+}
+
+.total-chart-box .title-box {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border: 6px solid #d6d6d6;
+    border-radius: 100px;
+    font-size: 12px;
+}
+
+.total-chart-box .title-box > span {
+    display: block;
+    margin-top: 30px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.total-chart-box .text-item {
+    padding-top: 10px;
+}
+
+.echart-box {
+    margin-top: 20px;
+    padding: 20px;
+    height: 400px;
+}
+
+.item-box-aqua .title-box {
+    border-color: #d57472 !important;
+}
+
+.item-box-aqua .title-box > span {
+    color: #d57472 !important;
+}
+
+.item-box-yellow .title-box {
+    border-color: #64747f !important;
+}
+
+.item-box-yellow .title-box > span {
+    color: #64747f !important;
+}
+
+.item-box-blue .title-box {
+    border-color: #e2be88 !important;
+}
+
+.item-box-blue .title-box > span {
+    color: #e2be88 !important;
+}
+
+.item-box-green .title-box {
+    border-color: #749f83 !important;
+}
+
+.item-box-green .title-box > span {
+    color: #749f83 !important;
+}
+
+.item-box-navy .title-box {
+    border-color: #7bafb6 !important;
+}
+
+.item-box-navy .title-box > span {
+    color: #7bafb6 !important;
+}
+
+.item-box-teal .title-box {
+    border-color: #dea08a !important;
+}
+
+.item-box-teal .title-box > span {
+    color: #dea08a !important;
+}
+
+.item-box-olive .title-box {
+    border-color: #99cbb4 !important;
+}
+
+.item-box-olive .title-box > span {
+    color: #99cbb4 !important;
+}
+
+.table-data-box {
+    padding: 0 20px;
+}
+
+/*提示框*/
+
+.alert_page_success {
+    color: #468847;
+    background-color: #dff0d8;
+    border-color: #d6e9c6
+}
+
+.alert_page_error {
+    color: #b94a48;
+    background-color: #f2dede;
+    border-color: #eed3d7
+}
+
+/*自定义datatable样式*/
+
+.dataTable .label {
+    cursor: pointer;
+}
+
+div.dataTables_length,
+div.dataTables_info {
+    float: left;
+}
+
+div.dataTables_filter,
+div.dataTables_paginate {
+    float: right;
+}
+
+div.dataTables_length,
+div.dataTables_filter {
+    display: none;
+}
+
+.dataTables_wrapper div.dataTables_info {
+    padding-top: 12px;
+}
+
+div.dataTables_paginate {
+    padding-top: 15px;
+}
+
+.dataTable .drop-down {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 100%;
+    border: 1px solid #3c8dbc;
+    background: #fff;
+    z-index: 1;
+}
+
+.dataTable .drop-down ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dataTable .drop-down li {
+    padding: 3px 10px;
+}
+
+.dataTable .drop-down li:hover,
+.dataTable .drop-down li.active {
+    background-color: #66afe9;
+    color: #fff;
+}
+
+table.dataTable thead .sorting_init.sorting_desc:after {
+    display: none;
+}
+
+.paginate_button,
+.paginate_button:hover {
+    padding: 5px 10px;
+    color: #23527c;
+    border: 1px solid #ddd;
+    border-left: 0;
+    background-color: #f4f4f4;
+    cursor: default;
+}
+
+.ellipsis + .paginate_button {
+    border-left: 1px solid #ddd;
+}
+
+.paginate_button:hover {
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.paginate_button.current {
+    color: #fff;
+    cursor: default;
+    background-color: #5faaea;
+    border-color: #63abe8;
+}
+
+.dataTables_paginate > .paginate_button:first-child {
+    border-left: 1px solid #ddd;
+}
+
+table.datatable-custom {
+    display: block;
+    overflow: auto;
+}
+
+table.datatable-custom > thead > tr > th {
+    text-align: center;
+    vertical-align: middle;
+    padding-right: 8px;
+}
+
+/* 自定义弹窗样式*/
+
+.modal-cus {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1100;
+    font-family: "微软雅黑";
+}
+
+.modal-cus label {
+    display: block;
+}
+
+.modal-cus .checkbox-inline,
+.modal-cus .radio-inline {
+    display: inline-block;
+}
+
+.modal-cus .box.box-solid.box-info {
+    box-shadow: 1px 1px 6px #5194a5;
+}
+
+.modal-cus .box-foot {
+    padding: 0 10px 10px 10px;
+    text-align: right;
+}
+
+.modal-cus .box-foot .btn-ok {
+    margin-right: 5px;
+}
+
+.modal-cus .form-group {
+    margin: 5px 0;
+}
+
+.modal-cus .iradio_minimal-blue {
+    margin-right: 5px;
+}
+
+/*实时搜索*/
+
+.ui-menu.ui-autocomplete {
+    padding: 0;
+}
+
+.ui-menu.ui-autocomplete > li {
+    padding: auto 2px;
+}
+
+.btn-export-box {
+    position: absolute;
+    right: 0;
+    padding-top: 20px;
+    padding-right: 60px;
+    z-index: 1;
+}
+
+.paddingL20 {
+    padding-left: 20px;
+}
+
+.item-data-box .box-title {
+    padding-left: 0;
+}
+
+/*电子围栏——车辆列表*/
+
+.fencelist-table-box {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 450px;
+    margin-left: -275px;
+    background-color: #fff;
+    border: 2px solid #d5d5d5;
+    box-shadow: 0px 0px 20px #d8d8d8;
+}
+
+.fencelist-table-box .box-head {
+    padding: 8px 10px;
+    background-color: #d5d5d5;
+    font-weight: bold;
+}
+
+.fencelist-table-box .box-body {
+    padding: 0 10px 20px 10px;
+}
+
+.fencelist-table-box .close-item {
+    float: right;
+    background-color: #ffcc7a;
+    width: 20px;
+    text-align: center;
+    cursor: default;
+}
+
+.fencelist-table-box .close-item:hover {
+    background-color: #f3b95c;
+}
+
+.fencelist-table-box .table > tbody > tr > td,
+.fencelist-table-box .table > thead > tr > th {
+    padding: 4px 5px;
+}
+
+/*增减车辆*/
+
+.fencelist-tree-box .tree-box,
+.fencelist-tree-box .car-box {
+    height: 300px;
+    overflow: auto;
+    float: left;
+}
+
+.fencelist-tree-box .tree-box {
+    width: 250px;
+}
+
+.fencelist-tree-box .car-box {
+    width: 200px;
+}
+
+.fencelist-tree-box li {
+    padding: 0;
+    margin: 0;
+}
+
+.fencelist-tree-box .list-unstyled {
+    padding: 10px 0;
+}
+
+.fencelist-tree-box .car-box .list-unstyled {
+    padding-left: 20px;
+}
+
+.fencelist-tree-box .list-unstyled li {
+    padding: 2px 0;
+    cursor: default;
+}
+
+.fencelist-tree-box .list-unstyled li > .fa {
+    margin-right: 3px;
+}
+
+.fencelist-tree-box .list-unstyled li .fa-caret-right {
+    width: 8px;
+}
+
+.fencelist-tree-box .list-unstyled ul {
+    list-style: none;
+    padding: 0 0 0 20px;
+}
+
+/*自定义树结构*/
+
+.tree-list-cus,
+.tree-list-default {
+    padding: 0;
+}
+
+.tree-list-cus li,
+.tree-list-default li {
+    list-style: none;
+    margin: 0;
+    padding-left: 15px;
+    position: relative;
+}
+
+.tree-list-default li {
+    padding-left: 20px;
+}
+
+.tree-list-cus li > ul,
+.tree-list-default li > ul {
+    padding-left: 5px;
+}
+
+.tree-list-cus > li > .tree-node {
+    color: #fff;
+    background-color: #329832;
+    border: 1px solid green;
+}
+
+.tree-list-cus .tree-node.active {
+    color: #fff;
+    background-color: #ff8100;
+    border: 1px solid #d2812f;
+}
+
+.tree-list-cus .tree-node {
+    display: inline-block;
+    padding: 2px 10px;
+    font-size: 12px;
+    margin: 0 0 5px 0;
+    border-radius: 20px;
+    border: 1px solid #666;
+    cursor: default;
+}
+
+.tree-list-default .tree-node {
+    cursor: default;
+}
+
+.tree-list-default .tree-node:hover,
+.tree-list-default .tree-node.active {
+    color: #f1633f;
+}
+
+.tree-list-cus .fa-collapse,
+.tree-list-default .fa-collapse {
+    position: absolute;
+    left: 0;
+    top: 3px;
+}
+
+.tree-list-default .fa-collapse {
+    left: 3px;
+    top: 2px;
+}
+
+/* 树结构弹出层*/
+.role-tree-popup {
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1;
+    background-color: #fff;
+    border: 1px solid #d2d6de;
+}
+
+/*自定义tab*/
+
+.nav-tabs-cus {
+    font-weight: bold;
+}
+
+.nav-tabs-cus > li > a {
+    border-radius: 0;
+    padding: 6px 15px;
+    color: #555;
+}
+
+.nav-tabs-cus > li.active > a,
+.nav-tabs-cus > li.active > a:focus,
+.nav-tabs-cus > li.active > a:hover {
+    background-color: #f9f9f9;
+}
+
+/*角色管理——功能权限*/
+.callout-cus {
+    border: 1px solid #f3f3f3;
+    border-left: 5px solid #eee;
+    margin: 10px 0 0 0;
+    padding: 10px;
+}
+
+.role-module-box {
+    position: relative;
+    padding-left: 110px;
+    min-height: 21px;
+}
+
+.role-module-box .title {
+    position: absolute;
+    width: 100px;
+    left: 0;
+    /* border-right: 1px solid #333; */
+    font-weight: bold;
+}
+
+.role-module-box ul li:first-child {
+    border-right: 1px solid #333;
+    padding: 0 15px 0 0;
+}
+
+.role-module-box .title .checkbox-inline,
+.role-module-box .title .radio-inline {
+    font-weight: bold;
+}
+
+.role-module-box .checkbox-all {
+    color: red;
+}
+
+.modal-ajax {
+    display: block;
+    text-align: center;
+    background-color: transparent;
+}
+
+.modal-ajax .fa-refresh {
+    font-size: 40px;
+    color: #333;
+    margin-top: 20%;
+}
+
+/*关闭按钮*/
+.box.box-solid > .box-header > .box-tools .btn {
+    border: 0;
+    outline: none;
+    background: #00c0ef;
+}
+
+/*列表页样式重写*/
+body {
+    padding: 0 15px;
+}
+
+body > .box {
+    border-top-color: #49afcd;
+}
+
+body > .box > .form-horizontal {
+    padding: 20px 15px;
+}

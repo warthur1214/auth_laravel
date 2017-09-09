@@ -15,17 +15,16 @@ class LogRequest
     public function handle(Request $request, Closure $next)
     {
         $params = array(
-            "u_id" => $request->input("u_id"),
-            "api_path" => $request->url(),
-            "client_id" => $request->getClientIp(),
-            "request_params" => $request->input()
+            "clientIP" => $request->getClientIp(),
+            "requestUrl" => $request->url(),
+            "requestBody" => $request->input()
         );
 
         Log::info(json_encode($params, JSON_UNESCAPED_SLASHES));
         $response = $next($request);
         $res_array = [
             'statusCode' => $response->status(),
-            'content' => json_decode($response->content(), true),
+            'responseBody' => json_decode($response->content(), true),
         ];
         Log::info(json_encode($res_array, JSON_UNESCAPED_UNICODE));
         return $response;

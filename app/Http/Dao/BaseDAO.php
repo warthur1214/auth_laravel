@@ -14,44 +14,54 @@ use Mockery\Exception;
 
 class BaseDAO
 {
-    protected static $table;
+    protected $table;
+    protected $db = null;
 
-    protected static function db()
+    protected function db()
     {
-        return DB::table(self::$table);
+        return DB::connection($db ?? null)->table($this->table);
     }
 
-    public static function selectDataList($where = null)
+    public function selectDataList($where = null)
     {
         try {
-            return self::db()->where($where)->select();
+            return $this->db()->where($where)->select();
         } catch (Exception $e) {
             throw new Exception($e);
         }
     }
 
-    public static function findDataInfoById($where = null, $field=['*'])
+    public function findDataCount($where = null, $column = '*')
     {
         try {
-            return self::db()->where($where)->get($field);
+            return $this->db()->where($where)->count($column);
         } catch (Exception $e) {
             throw new Exception($e);
         }
     }
 
-    public static function deleteDataInfoById($where = null)
+    public function findDataInfo($where = null, $field = ['*'])
     {
         try {
-            return self::db()->where($where)->delete();
+            return $this->db()->where($where)->first($field);
         } catch (Exception $e) {
             throw new Exception($e);
         }
     }
 
-    public static function updateDataInfo(array $data = [], $where = null)
+    public function deleteDataInfo($where = null)
     {
         try {
-            return self::db()->where($where)->update($data);
+            return $this->db()->where($where)->delete();
+        } catch (Exception $e) {
+            throw new Exception($e);
+        }
+    }
+
+    public function updateDataInfo(array $data = [], $where = null)
+    {
+        try {
+            return $this->db()->where($where)->update($data);
         } catch (Exception $e) {
             throw new Exception($e);
         }
