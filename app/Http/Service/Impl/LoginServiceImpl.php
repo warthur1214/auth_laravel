@@ -31,37 +31,43 @@ class LoginServiceImpl implements LoginService
 
     public function checkLogin($data)
     {
-        $account = $this->accountDAO->find([
-            'account_name' => $data['account_name'],
-            'is_available' => 1,
-        ], ['account_id', 'password', 'account_name', 'belonged_organ_id']);
+        try {
 
-        if ($account == null) {
-            return ResponseUtil::errorMsg("账号不存在或被冻结，请联系管理员");
+            $account = $this->accountDAO->find([
+                'account_name' => $data['account_name'],
+                'is_available' => 1,
+            ], ['account_id', 'password', 'account_name', 'belonged_organ_id']);
+
+            if ($account == null) {
+                return ResponseUtil::errorMsg("账号不存在或被冻结，请联系管理员");
+            }
+
+            if ($account->password != $data['password']) {
+                return ResponseUtil::errorMsg("账号或密码错误");
+            }
+
+            $accountRoles = $this->accountDAO->selectUserRole($account);
+            $accountOrgans = $this->roleDAO->findOrganIdByRole('r.role_id', $accountRoles->all());
+
+            $accountModules = $this->roleDAO->findModuleIdByRole('rm.role_id', $accountRoles->all());
+
+            // 无权限账号无法登录
+            if ($accountRoles->count() == 0 || $accountModules->count() == 0) {
+                return ResponseUtil::errorMsg("该账号未分配模块权限，请联系管理员");
+            }
+            session(["auth_account_cache" => [
+                'account_info'=>$account,
+                'account_role_id'=>$accountRoles->all(),
+                'account_organ_id'=>$accountOrgans->all(),
+                'account_module_id'=>$accountModules->all()
+            ]]);
+
+            $this->accountDAO->update(['last_login_time' => date("Y-m-d H:i:s")],
+                ['account_id' => $account->account_id]);
+
+        } catch (Exception $e) {
+            throw new Exception($e);
         }
-
-        if ($account->password != $data['password']) {
-            return ResponseUtil::errorMsg("账号或密码错误");
-        }
-
-        $accountRoles = $this->accountDAO->selectUserRole($account);
-        $accountOrgans = $this->roleDAO->findOrganIdByRole('r.role_id', $accountRoles->all());
-
-        $accountModules = $this->roleDAO->findModuleIdByRole('rm.role_id', $accountRoles->all());
-
-        // 无权限账号无法登录
-        if ($accountRoles->count() == 0 || $accountModules->count() == 0) {
-            return ResponseUtil::errorMsg("该账号未分配模块权限，请联系管理员");
-        }
-        session(["auth_account_cache" => [
-            'account_info'=>$account,
-            'account_role_id'=>$accountRoles->all(),
-            'account_organ_id'=>$accountOrgans->all(),
-            'account_module_id'=>$accountModules->all()
-        ]]);
-
-        $this->accountDAO->update(['last_login_time' => date("Y-m-d H:i:s")],
-            ['account_id' => $account->account_id]);
 
         return ResponseUtil::successMsg("登录成功！");
     }
