@@ -1,69 +1,25 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: warth
- * Date: 2017/9/3
- * Time: 21:59
+ * User: warthur
+ * Date: 17/9/10
+ * Time: 上午9:06
  */
 
 namespace App\Http\Dao;
 
 
-use Illuminate\Support\Facades\DB;
-use Mockery\Exception;
-
-class BaseDAO
+interface BaseDAO
 {
-    protected $table;
-    protected $db = null;
+    public function findAll($where, $fields);
 
-    protected function db()
-    {
-        return DB::connection($db ?? null)->table($this->table);
-    }
+    public function findCount($where, $column);
 
-    public function selectDataList($where = null)
-    {
-        try {
-            return $this->db()->where($where)->select();
-        } catch (Exception $e) {
-            throw new Exception($e);
-        }
-    }
+    public function findOne($where, $column);
 
-    public function findDataCount($where = null, $column = '*')
-    {
-        try {
-            return $this->db()->where($where)->count($column);
-        } catch (Exception $e) {
-            throw new Exception($e);
-        }
-    }
+    public function find($where, $field);
 
-    public function findDataInfo($where = null, $field = ['*'])
-    {
-        try {
-            return $this->db()->where($where)->first($field);
-        } catch (Exception $e) {
-            throw new Exception($e);
-        }
-    }
+    public function delete($where);
 
-    public function deleteDataInfo($where = null)
-    {
-        try {
-            return $this->db()->where($where)->delete();
-        } catch (Exception $e) {
-            throw new Exception($e);
-        }
-    }
-
-    public function updateDataInfo(array $data = [], $where = null)
-    {
-        try {
-            return $this->db()->where($where)->update($data);
-        } catch (Exception $e) {
-            throw new Exception($e);
-        }
-    }
+    public function update(array $data, $where);
 }

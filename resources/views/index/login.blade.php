@@ -1,6 +1,6 @@
 @extends("public.base")
 
-@section("js")
+@section("link")
 	<script src="{{asset("/js/login/login.js")}}"></script>
 @endsection
 
@@ -20,7 +20,6 @@
 			</div>
 
 			<form action="" method="post" id="login_form">
-				{{ csrf_field() }}
 				<div class="form-group has-feedback">
 					<input type="text" class="form-control" placeholder="账号" name="account_name" id="account_name">
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -30,6 +29,7 @@
 					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 			</form>
+
 			<button type="submit" class="btn btn-info btn-block" id="submit">登录</button>
 
 		</div>

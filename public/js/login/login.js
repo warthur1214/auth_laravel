@@ -64,13 +64,12 @@ $(function() {
             data: requestData,
             dataType: "json",
             success: function(result) {
-                if (result.status == 0) {
+                if (result.status != 0) {
                     $('.alert').html(result.msg);
                     $('.alert').show();
                     setTimeout(function() { window.location.reload() }, 2000);
                 } else {
-                    //$('.alert').show().removeClass('alert-error').addClass('alert-info');
-                    setTimeout(function() { window.location.href = '/' }, 2000);
+                    setTimeout(function() { window.location.href = APP_URL + "/index" }, 2000);
                 }
 
             }

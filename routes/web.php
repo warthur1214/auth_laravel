@@ -11,15 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-
-    if (session("auth_account_id")) {
-        return response()->view('index.index');
-    } else {
-        return response()->view('index.login');
-    }
-
-});
-
+//登录模块
 Route::get('/login', 'LoginController@login');
+Route::get('/', 'LoginController@index');
 Route::post('/loginAjax', 'LoginController@loginAjax');
+Route::get('/loginOut', 'LoginController@loginOut');
+
+// 首页模块
+Route::get('/index', 'LoginController@index');
+Route::get("/index/menu", "LoginController@menu");
+Route::get('/index/main', 'LoginController@main');
