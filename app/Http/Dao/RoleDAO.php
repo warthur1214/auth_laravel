@@ -8,7 +8,8 @@
 
 namespace App\Http\Dao;
 
-
+use App\Http\Dao\inter\AbstractRepository;
+use App\Http\Dao\inter\BaseDAO;
 use Exception;
 use function foo\func;
 

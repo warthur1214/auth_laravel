@@ -9,6 +9,8 @@
 namespace App\Http\Dao;
 
 
+use App\Http\Dao\inter\AbstractRepository;
+use App\Http\Dao\inter\BaseDAO;
 use DB;
 use Exception;
 

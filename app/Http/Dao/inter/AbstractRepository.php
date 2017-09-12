@@ -6,7 +6,7 @@
  * Time: 21:59
  */
 
-namespace App\Http\Dao;
+namespace App\Http\Dao\inter;
 
 
 use Exception;

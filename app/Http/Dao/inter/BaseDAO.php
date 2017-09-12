@@ -6,7 +6,7 @@
  * Time: 上午9:06
  */
 
-namespace App\Http\Dao;
+namespace App\Http\Dao\inter;
 
 
 interface BaseDAO

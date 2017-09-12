@@ -8,6 +8,8 @@
 
 namespace App\Http\Dao;
 
+use App\Http\Dao\inter\AbstractRepository;
+use App\Http\Dao\inter\BaseDAO;
 
 class ModuleDAO extends AbstractRepository implements BaseDAO
 {
