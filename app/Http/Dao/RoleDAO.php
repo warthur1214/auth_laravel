@@ -34,7 +34,9 @@ class RoleDAO extends AbstractRepository implements BaseDAO
     public function findModuleIdByRole($column, $data)
     {
         try {
-            return $this->table("t_role_module_rel as rm")->whereIn($column, $data)->pluck('rm.module_id');
+            return $this->table("t_role_module_rel as rm")
+                ->whereIn($column, $data)
+                ->pluck('rm.module_id');
         } catch (\Exception $e) {
             throw new Exception($e);
         }

@@ -48,7 +48,7 @@ class LoginController extends Controller
         //获取当前角色
         return view("index.main", [
             'date' => $date,
-            'display_name' => session("displayName")
+            'display_name' => session("auth_account_cache")->account_info->real_name
         ]);
     }
 
@@ -85,7 +85,7 @@ class LoginController extends Controller
     public function menu()
     {
         $menuList = $this->loginService->getMenuList([
-            'parent_module_id' => 0,
+            'parent_module_id'=>0,
             'is_visible' => 1,
             'platform_id' =>env("APP_PLATFORM_ID")
         ]);

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Log;
 
 /**
@@ -21,6 +22,7 @@ class LogRequest
         );
 
         Log::info(json_encode($params, JSON_UNESCAPED_SLASHES));
+        DB::enableQueryLog();
         $response = $next($request);
         $res_array = [
             'statusCode' => $response->status(),
@@ -28,6 +30,11 @@ class LogRequest
         ];
         Log::info(json_encode($res_array, JSON_UNESCAPED_UNICODE));
         return $response;
+    }
+
+    public function terminate($request, $response)
+    {
+        Log::info(DB::getQueryLog());
     }
 
 }

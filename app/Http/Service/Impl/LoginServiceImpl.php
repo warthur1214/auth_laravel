@@ -36,7 +36,7 @@ class LoginServiceImpl implements LoginService
             $account = $this->accountDAO->find([
                 'account_name' => $data['account_name'],
                 'is_available' => 1,
-            ], ['account_id', 'password', 'account_name', 'belonged_organ_id']);
+            ], ['account_id', 'password', 'account_name', 'belonged_organ_id', 'real_name']);
 
             if ($account == null) {
                 return ResponseUtil::errorMsg("账号不存在或被冻结，请联系管理员");
@@ -55,7 +55,7 @@ class LoginServiceImpl implements LoginService
             if ($accountRoles->count() == 0 || $accountModules->count() == 0) {
                 return ResponseUtil::errorMsg("该账号未分配模块权限，请联系管理员");
             }
-            session(["auth_account_cache" => [
+            session(["auth_account_cache" => (object)[
                 'account_info'=>$account,
                 'account_role_id'=>$accountRoles->all(),
                 'account_organ_id'=>$accountOrgans->all(),
@@ -74,9 +74,10 @@ class LoginServiceImpl implements LoginService
 
     public function getMenuList($reqParam)
     {
-        $menuList = $this->moduleDAO->findAll($reqParam,
-            ['module_id', 'module_name', 'parent_module_id', 'is_visible', 'module_url'],
-            ['sort_no', 'desc']);
+        $menuList = $this->moduleDAO->getModuleListByRoleId($reqParam,
+            ['m.module_id', 'm.module_name', 'm.parent_module_id', 'm.module_url', 'm.display_level', 'is_visible'],
+            ['role_id', session('auth_account_cache')->account_role_id],
+            ['m.sort_no', 'desc']);
 
         foreach ($menuList as $k => &$menu) {
             $reqParam['parent_module_id'] = $menu->module_id;
@@ -84,6 +85,8 @@ class LoginServiceImpl implements LoginService
             $menu->menu_two = $this->getMenuList($reqParam);
         }
 
+
         return $menuList;
     }
+
 }

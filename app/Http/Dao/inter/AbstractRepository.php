@@ -17,12 +17,13 @@ abstract class AbstractRepository
     protected $table;
     protected $db = null;
 
-    protected function db($db=null)
+    protected function db($db = null)
     {
         return DB::connection($db ?? $this->db)->table($this->table);
     }
 
-    protected function table($table=null) {
+    protected function table($table = null)
+    {
         return DB::connection($db ?? $this->db)->table($table);
     }
 
@@ -33,24 +34,24 @@ abstract class AbstractRepository
      * @return \Illuminate\Support\Collection
      * @throws Exception
      */
-    public function findAll($where = null, $fields=['*'], $order=[])
+    public function findAll($where = null, $fields = ['*'], $group = [], $order = [])
     {
         try {
 
             $query = $this->db()->where(function ($query) use ($where) {
-                foreach ($where as $key => $value)
-                {
+                foreach ($where as $key => $value) {
                     if (is_array($value)) {
                         list($key, $formula, $val) = $value;
-                        $query->where($key, $formula, $val);
+                        $query->where($key, $formula, $val, $value[4] ?? 'and');
                     } else {
                         $query->where($key, '=', $value);
                     }
                 }
+            })->when($group, function ($query) use ($group) {
+                return $query->groupBy($group);
+            })->when($order, function ($query) use ($order) {
+                return $query->orderBy($order[0], $order[1]);
             });
-            if ($order) {
-                $query = $query->orderBy($order[0], $order[1]);
-            }
 
             return $query->get($fields);
         } catch (Exception $e) {
@@ -67,21 +68,30 @@ abstract class AbstractRepository
         }
     }
 
-    public function findOne($where = null, $column, $join=null)
+    public function findOne($where = null, $column, $join = [])
     {
         try {
             $query = $this->db()->where(function ($query) use ($where) {
-                foreach ($where as $key => $value)
-                {
+                foreach ($where as $key => $value) {
                     if (is_array($value)) {
                         list($key, $formula, $val) = $value;
-                        $query->where($key, $formula, $val);
+                        $query->where($key, $formula, $val, $value[4] ?? 'and');
                     } else {
                         $query->where($key, '=', $value);
                     }
                 }
+            })->when($join, function ($query) use ($join) {
+                if (is_array($join[0])) {
+                    return $query->join($join[0], $join[1], $join[2], $join[3], $join[4] ?? 'inner');
+                }
+
+                foreach ($join as $item) {
+                    if (is_array($item)) {
+                        $query->join($item[0], $item[1], $item[2], $item[3], $item[4] ?? 'inner');
+                    }
+                }
+                return $query;
             });
-            if ($join)
 
             return $query->pluck($column);
         } catch (Exception $e) {
@@ -89,10 +99,30 @@ abstract class AbstractRepository
         }
     }
 
-    public function find($where = null, $field = ['*'])
+    public function find($where = null, $fields = ['*'], $join=[])
     {
         try {
-            return $this->db()->where($where)->first($field);
+            return $query = $this->db()->where(function ($query) use ($where) {
+                foreach ($where as $key => $value) {
+                    if (is_array($value)) {
+                        list($key, $formula, $val) = $value;
+                        $query->where($key, $formula, $val, $value[4] ?? 'and');
+                    } else {
+                        $query->where($key, '=', $value);
+                    }
+                }
+            })->when($join, function ($query) use ($join) {
+                if (is_array($join[0])) {
+                    return $query->join($join[0], $join[1], $join[2], $join[3], $join[4] ?? 'inner');
+                }
+
+                foreach ($join as $item) {
+                    if (is_array($item)) {
+                        $query->join($item[0], $item[1], $item[2], $item[3], $item[4] ?? 'inner');
+                    }
+                }
+                return $query;
+            })->first($fields);
         } catch (Exception $e) {
             throw new Exception($e);
         }
