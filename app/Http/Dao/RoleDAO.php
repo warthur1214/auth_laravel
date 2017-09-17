@@ -16,6 +16,7 @@ use function foo\func;
 class RoleDAO extends AbstractRepository implements BaseDAO
 {
     protected $table = "t_role as r";
+    protected $db = 'auth';
 
     public function findOrganIdByRole($column, $data)
     {

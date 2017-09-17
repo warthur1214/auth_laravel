@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Common\Util\ResponseUtil;
 use App\Http\Service\LoginService;
-use App\Http\Service\LoginServiceImpl;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;

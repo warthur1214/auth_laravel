@@ -15,6 +15,7 @@ use Mockery\Exception;
 class ModuleDAO extends AbstractRepository implements BaseDAO
 {
     protected $table = "t_module as m";
+    protected $db = 'auth';
 
     public function getModuleListByRoleId($where=[], $fields=['*'], $in=[], $sort=[])
     {

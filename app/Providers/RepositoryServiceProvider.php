@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\LoginController;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -27,18 +26,15 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
-            'App\Http\Service\LoginService',
-            'App\Http\Service\Impl\LoginServiceImpl'
-        );
-        $this->app->singleton("App\Http\Controller\LoginController", function ($app) {
+        $services = [
+            'Login',
+            'Organ'
+        ];
 
-            return new LoginController($app->make('LoginService'));
-        });
+        foreach ($services as $item) {
+            $this->app->bind("App\Http\Service\{$item}Service",
+                "App\Http\Service\Impl\{$item}ServiceImpl");
+        }
     }
 
-    public function provides()
-    {
-        return [LoginController::class];
-    }
 }

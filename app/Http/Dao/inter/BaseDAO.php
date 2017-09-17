@@ -21,5 +21,5 @@ interface BaseDAO
 
     public function delete($where);
 
-    public function update(array $data, $where);
+    public function update(array $data, array $where);
 }

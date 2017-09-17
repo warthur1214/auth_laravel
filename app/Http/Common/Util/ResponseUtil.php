@@ -18,6 +18,16 @@ class ResponseUtil
         return response()->json($data);
     }
 
+    public static function successData($data)
+    {
+        $array = [
+            'status' => $code ?? StatusCode::SUCESS,
+            'msg' => $msg ?? Constants::REQUEST_SUCCESS,
+            'data' =>$data
+        ];
+        return self::response($array);
+    }
+
     public static function success(int $code = null, string $msg = null, $data = null)
     {
 

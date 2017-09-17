@@ -17,6 +17,7 @@ use Exception;
 class AccountDAO extends AbstractRepository implements BaseDAO
 {
     protected $table = "t_account as a";
+    protected $db = 'auth';
 
     public function selectUserRole($account)
     {
