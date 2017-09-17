@@ -18,14 +18,14 @@ abstract class AbstractRepository extends Model
     protected $table;
     protected $db = null;
 
-    protected function db($db = null)
+    protected function db($connection = null)
     {
-        return DB::connection($db ?? $this->db)->table($this->table);
+        return DB::connection($connection ?? $this->connection)->table($this->table);
     }
 
     protected function table($table = null)
     {
-        return DB::connection($db ?? $this->db)->table($table);
+        return DB::connection()->table($table);
     }
 
     protected function doWhere($where) {

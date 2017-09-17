@@ -33,8 +33,8 @@ class RepositoryServiceProvider extends ServiceProvider
         foreach ($services as $item) {
             $this->app->bind("App\Http\Service\\{$item}Service",
                 "App\Http\Service\Impl\\{$item}ServiceImpl");
-            $this->app->singleton("App\Http\Controller\\{$item}Controller", function ($app) {
-                return new LoginController($app->make('LoginService'));
+            $this->app->singleton("App\Http\Controller\\{$item}Controller", function ($app) use ($item) {
+                return new ${"${$item}Controller"}($app->make("{$item}Service"));
             });
         }
     }

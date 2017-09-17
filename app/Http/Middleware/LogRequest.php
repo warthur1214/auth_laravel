@@ -22,19 +22,15 @@ class LogRequest
         );
 
         Log::info(json_encode($params, JSON_UNESCAPED_SLASHES));
-        DB::enableQueryLog();
+
         $response = $next($request);
+
         $res_array = [
             'statusCode' => $response->status(),
             'responseBody' => json_decode($response->content(), true),
         ];
         Log::info(json_encode($res_array, JSON_UNESCAPED_UNICODE));
         return $response;
-    }
-
-    public function terminate($request, $response)
-    {
-        Log::info(DB::getQueryLog());
     }
 
 }
