@@ -17,4 +17,10 @@ class ExampleTest extends TestCase
     {
         $this->assertTrue(true);
     }
+
+    public function testDateConsole()
+    {
+        echo date("Y-m-d H:i:s");
+        $this->assertTrue(true);
+    }
 }

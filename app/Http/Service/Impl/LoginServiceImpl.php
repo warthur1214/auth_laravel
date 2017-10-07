@@ -33,10 +33,10 @@ class LoginServiceImpl implements LoginService
     {
         try {
 
-            $account = $this->accountDAO->find([
-                'account_name' => $data['account_name'],
-                'is_available' => 1,
-            ], ['account_id', 'password', 'account_name', 'belonged_organ_id', 'real_name']);
+            $account = $this->accountDAO->find(
+                ['account_id', 'password', 'account_name', 'belonged_organ_id', 'real_name'],
+                ['account_name' => $data['account_name'],'is_available' => 1]
+            );
 
             if ($account == null) {
                 return ResponseUtil::errorMsg("账号不存在或被冻结，请联系管理员");

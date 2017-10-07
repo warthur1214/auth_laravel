@@ -37,7 +37,7 @@ class OrganServiceImpl implements OrganService
     public function getOrganTypeList()
     {
         try {
-            $response = $this->organTypeDAO->get(['organ_type_id', 'organ_type_name']);
+            $response = $this->organTypeDAO->find(['organ_type_id', 'organ_type_name']);
         } catch (\Exception $e) {
             throw new Exception($e);
         }
@@ -47,7 +47,7 @@ class OrganServiceImpl implements OrganService
     public function getCooperateList()
     {
         try {
-            $response = $this->cooperateDAO->get(['coop_type_id', 'coop_type']);
+            $response = $this->cooperateDAO->find(['coop_type_id', 'coop_type']);
         } catch (\Exception $e) {
             throw new Exception($e);
         }
@@ -100,15 +100,17 @@ class OrganServiceImpl implements OrganService
 
         try {
             // 企业下有无子机构
-            $count = $this->organDAO->findCount($where, 'organ_id');
+            $count = $this->organDAO->findCount('organ_id', $where);
             if ($count > 0) {
                 return ResponseUtil::errorMsg("该企业存在所属信息，请检查！");
             }
 
-            $organInfo = $this->organDAO->find(['organ_id'=>$organId],
-                ['o.organ_id', 'o.organ_name', 'o.organ_type_id']);
+            $organInfo = $this->organDAO->find(
+                ['o.organ_id', 'o.organ_name', 'o.organ_type_id'],
+                ['organ_id'=>$organId]
+            );
             if ($organInfo->organ_type_id == 4) {
-                $count = $this->deviceTypeDAO->where(['supplied_organ_id'=>$organId])->findCount('device_type_id');
+                $count = $this->deviceTypeDAO->findCount('device_type_id', ['supplied_organ_id'=>$organId]);
                 if ($count > 0) {
                     return ResponseUtil::errorMsg("该硬件厂商存在关联硬件类型，请检查！");
                 }
@@ -126,7 +128,7 @@ class OrganServiceImpl implements OrganService
         $where['o.organ_id'] = $request->input("organ_id");
 
         try {
-            $this->organDAO->where($where)->update(['is_available'=>$request->input('is_available')]);
+            $this->organDAO->update(['is_available'=>$request->input('is_available')], $where);
         } catch (\Exception $e) {
             throw new Exception($e);
         }

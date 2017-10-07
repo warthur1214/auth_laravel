@@ -13,7 +13,7 @@ use MyCLabs\Enum\Enum;
 
 final class Constants extends Enum
 {
-    const REQUEST_SUCCESS = "请求成功！";
-    const REQUEST_ERROR = "请求失败！";
+    const REQUEST_SUCCESS = "操作成功！";
+    const REQUEST_ERROR = "操作失败！";
     const UNKNOW_ERROR = "未知错误";
 }

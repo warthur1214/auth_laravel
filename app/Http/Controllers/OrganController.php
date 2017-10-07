@@ -119,8 +119,8 @@ class OrganController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'is_available' => 'required|numberic|min:0|max:1',
-                'organ_id' => 'required|numberic|min:1'
+                'is_available' => 'required|integer|between:0,1',
+                'organ_id' => 'required|integer|min:1'
             ]);
 
             if ($validator->fails()) {

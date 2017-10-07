@@ -122,11 +122,9 @@ function selectItem(evt) {
         type: 'post',
         data: {is_available:statusNum, organ_id: freazeId},
         success: function (res) {
-            if (res.status) {
+            Alert(res.msg);
+            if (res.status === 0) {
                 window.location.href = ("organList");
-            }
-            else {
-                Alert("操作失败")
             }
         }
     });
