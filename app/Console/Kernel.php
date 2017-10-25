@@ -27,7 +27,9 @@ class Kernel extends ConsoleKernel
     {
 //         $schedule->command('inspire')
 //                  ->hourly();
-        $schedule->command('DumpCommand')->cron("0/5 * * * * *");
+        $schedule->command('DumpCommand')
+            ->cron("0/5 * * * * *")
+            ->sendOutputTo("storage/logs/laravel-".date("Y-m-d").".log", true);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Log;
 
 class DumpCommand extends Command
 {
@@ -37,6 +38,6 @@ class DumpCommand extends Command
      */
     public function handle()
     {
-        dump("-----------------起来了--------------");
+        Log::info("-----------------定时任务启动了--------------");
     }
 }

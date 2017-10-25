@@ -12,3 +12,5 @@ command:
 	    php artisan ide-helper:generate
 	.phpstorm.meta file
 	    php artisan ide-helper:meta
+	create command:
+		php artisan make:console DumpCommand --command=dump-text
