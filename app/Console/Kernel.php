@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Console\Commands\DumpCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -25,8 +26,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-//         $schedule->command('inspire')
-//                  ->hourly();
+
+        $schedule->call(function () {
+            Log::info("********执行了1次定时任务*******");
+        })->cron("0/5 * * * *");
+
         $schedule->command('DumpCommand')
             ->cron("0/5 * * * *");
     }
