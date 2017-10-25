@@ -11,7 +11,7 @@ class DumpCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'dump command';
+    protected $signature = 'DumpCommand';
 
     /**
      * The console command description.
