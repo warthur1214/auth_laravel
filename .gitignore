@@ -3,3 +3,4 @@
 _ide_helper.php
 .phpstorm.meta.php
 .gitattributes
+composer.lock
