@@ -29,8 +29,8 @@ class LoginController extends Controller
 
     public function login()
     {
-//        $result = $this->httpClient->post("/analysis/getorderanalysis.do", [
-//            'form_params'=> [
+//        $result = $this->httpClient->get("/analysis/getorderanalysis.do", [
+//            'query'=> [
 //                'appId' => 'wx85fdc482d69a65dd',
 //                'beginDate' => '2017-09-01',
 //                'endDate' => '2017-10-17',

@@ -2,13 +2,20 @@
 
 namespace Tests\Feature;
 
+use GuzzleHttp\Client;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ExampleTest extends TestCase
 {
+
+    private $httpClient;
+
+    public function __construct($name = null, array $data = [], $dataName = '')
+    {
+        parent::__construct($name, $data, $dataName);
+        $this->httpClient = new Client(['base_uri' => "http://localhost:8080"]);
+    }
+
     /**
      * A basic test example.
      *
@@ -24,13 +31,17 @@ class ExampleTest extends TestCase
 
     public function testRequest()
     {
-        $result = $this->get("http://localhost:8080/analysis/getorderanalysis.do?". http_build_query([
+
+        $result = $this->httpClient->get("/analysis/getorderanalysis.do", [
+            'query'=> [
                 'appId' => 'wx85fdc482d69a65dd',
                 'beginDate' => '2017-09-01',
                 'endDate' => '2017-10-17',
                 'analysisType' => 'appointment'
-            ]));
+            ]
+        ]);
 
-        dump($result);
+        $this->assertEquals(200, $result->getStatusCode());
+        $this->assertNotEmpty($result->getBody()->getContents());
     }
 }
