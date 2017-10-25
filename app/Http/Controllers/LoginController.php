@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Common\Util\ResponseUtil;
 use App\Http\Service\LoginService;
+use GuzzleHttp\Client;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -18,14 +19,26 @@ class LoginController extends Controller
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     private $loginService;
+    private $httpClient;
 
     public function __construct(LoginService $loginService)
     {
         $this->loginService = $loginService;
+        $this->httpClient = new Client(['base_uri' => "http://localhost:8080"]);
     }
 
     public function login()
     {
+//        $result = $this->httpClient->post("/analysis/getorderanalysis.do", [
+//            'form_params'=> [
+//                'appId' => 'wx85fdc482d69a65dd',
+//                'beginDate' => '2017-09-01',
+//                'endDate' => '2017-10-17',
+//                'analysisType' => 'appointment'
+//            ]
+//        ]);
+//        dump($result->getBody()->getContents());
+
         return response()->view("index.login");
     }
 
