@@ -17,11 +17,16 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
 use Log;
 
+/**
+ * 企业管理
+ * @package App\Http\Controllers
+ */
 class OrganController extends Controller
 {
 
     private $organService;
 
+    //注入企业管理服务
     public function __construct(OrganService $organService)
     {
         $this->organService = $organService;
@@ -105,7 +110,7 @@ class OrganController extends Controller
     public function removeOrganInfo(int $organId)
     {
         try {
-            $result = $this->organService->getOrganInfoById($organId);
+            $result = $this->organService->removeOrganInfo($organId);
 
         } catch (Exception $e) {
             Log::error($e->getMessage());
