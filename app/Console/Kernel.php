@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
 //         $schedule->command('inspire')
 //                  ->hourly();
         $schedule->command('DumpCommand')
-            ->cron("0/5 * * * * *");
+            ->cron("0/5 * * * * ?");
     }
 
     /**
