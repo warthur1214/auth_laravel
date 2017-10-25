@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
         })->cron("0/5 * * * *");
 
         $schedule->command('DumpCommand')
-            ->cron("0/5 * * * *");
+            ->everyMinute();
     }
 
     /**
