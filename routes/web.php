@@ -33,3 +33,6 @@ Route::get('/organ/checkOrgan/{organId}', 'OrganController@scanOrgan');
 Route::get('/organ/getInfoById/{organId}', 'OrganController@getOrganInfoById');
 Route::get('/organ/deleteOrgan/{organId}', 'OrganController@removeOrganInfo');
 Route::post('/organ/organAvailable', 'OrganController@organAvailable');
+
+Route::get('/oauth/2.0/token', 'OAuthController@getToken');
+Route::post('/rpc/2.0/ai_custom/v1/classification/model_293', 'OAuthController@imageUpload');

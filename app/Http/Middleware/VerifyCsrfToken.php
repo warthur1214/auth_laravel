@@ -13,5 +13,6 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         //
+        '/rpc/2.0/ai_custom/v1/classification/model_293'
     ];
 }
