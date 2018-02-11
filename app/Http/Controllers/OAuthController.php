@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Common\Util\Constants;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -16,6 +17,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Redis;
 
 class OAuthController extends Controller
 {
@@ -29,15 +31,21 @@ class OAuthController extends Controller
     }
 
     public function getToken(Request $request) {
-        $res = $this->httpClient->get('/oauth/2.0/token', [
-            'query'=> [
-                'grant_type'=>$request->input('grant_type'),
-                'client_id'=>$request->input('client_id'),
-                'client_secret'=>$request->input('client_secret')
-            ]
-        ]);
 
-        return response($res->getBody()->getContents())->header('content-type', 'application/json;charset=utf-8');
+        $oauthToken = Redis::get(Constants::OAUTH_CACHE_TOKEN);
+
+        if (!$oauthToken) {
+            $oauthToken = $this->httpClient->get('/oauth/2.0/token', [
+                'query'=> [
+                    'grant_type'=>$request->input('grant_type'),
+                    'client_id'=>$request->input('client_id'),
+                    'client_secret'=>$request->input('client_secret')
+                ]
+            ])->getBody()->getContents();
+
+            Redis::set(Constants::OAUTH_CACHE_TOKEN, $oauthToken, 'EX', json_decode($oauthToken)->expires_in);
+        }
+        return response($oauthToken)->header('content-type', 'application/json;charset=utf-8');
     }
 
     public function ImageUpload(Request $request) {
