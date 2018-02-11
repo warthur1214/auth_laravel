@@ -45,7 +45,7 @@ class OAuthController extends Controller
 
             Redis::set(Constants::OAUTH_CACHE_TOKEN, $oauthToken, 'EX', json_decode($oauthToken)->expires_in);
         }
-        return response($oauthToken)->header('content-type', 'application/json;charset=utf-8');
+        return response($oauthToken);
     }
 
     public function ImageUpload(Request $request) {
@@ -58,8 +58,8 @@ class OAuthController extends Controller
                 'image'=>$request->image,
                 'top_num'=>$request->top_num ?? 6
             ]
-        ]);
+        ])->getBody()->getContents();
 
-        return response($res->getBody()->getContents())->header('content-type', 'application/json;charset=utf-8');
+        return response($res);
     }
 }
