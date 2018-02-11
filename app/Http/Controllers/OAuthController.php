@@ -50,7 +50,7 @@ class OAuthController extends Controller
 
     public function ImageUpload(Request $request) {
 
-        $res = $this->httpClient->post('/rpc/2.0/ai_custom/v1/classification/model_293', [
+        $res = $this->httpClient->post('/rpc/2.0/ai_custom/v1/classification/phone_identify', [
             'query'=> [
                 'access_token' => $request->access_token
             ],
